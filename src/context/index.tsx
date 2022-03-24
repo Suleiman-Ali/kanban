@@ -15,6 +15,7 @@ interface ContextProps {
     priority: string,
     state: string
   ) => void;
+  deleteTask: (task: Task) => void;
 }
 
 const Context = React.createContext<ContextProps>(undefined!);
@@ -43,8 +44,14 @@ export function ContextProvider({
     setTasks((tasks) => [task, ...tasks]);
   };
 
+  const deleteTask = (task: Task) => {
+    setTasks((tasks) => tasks.filter((t) => t.id !== task.id));
+  };
+
   return (
-    <Context.Provider value={{ tasks, addTask }}>{children}</Context.Provider>
+    <Context.Provider value={{ tasks, addTask, deleteTask }}>
+      {children}
+    </Context.Provider>
   );
 }
 
