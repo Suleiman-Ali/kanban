@@ -15,3 +15,23 @@ export type Task = {
   priority: string;
   state: string;
 };
+
+export const getTimeUnitColor = (t: string) => {
+  if (t === 'MIN') return colors[0];
+  if (t === 'HOUR') return colors[1];
+  if (t === 'DAY') return colors[2];
+  if (t === 'MONTH') return colors[3];
+  if (t === 'YEAR') return colors[4];
+};
+
+export const getPriorityColor = (p: string) => {
+  if (p === 'LOW') return colors[0];
+  if (p === 'MID') return colors[1];
+  if (p === 'HIGH') return colors[2];
+};
+
+export const getStateColor = (s: string) => {
+  if (s === 'TO DO') return colors[0];
+  if (s === 'DOING') return colors[1];
+  if (s === 'DONE') return colors[2];
+};
