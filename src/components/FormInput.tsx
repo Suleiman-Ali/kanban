@@ -5,6 +5,8 @@ interface FormInputProps {
   type: 'text' | 'number';
   placeholder: string;
   min?: number;
+  max?: number;
+  maxLength?: number;
   value: string | number | undefined;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -14,6 +16,8 @@ function FormInput({
   type,
   placeholder,
   min,
+  max,
+  maxLength,
   value,
   onChange,
 }: FormInputProps): JSX.Element {
@@ -23,12 +27,14 @@ function FormInput({
         {label}
       </label>
       <input
+        maxLength={maxLength}
         onChange={onChange}
         value={value}
         type={type}
         id={label}
         placeholder={placeholder}
         min={min}
+        max={max}
         required
         className="form__input"
       />

@@ -7,17 +7,27 @@ import {
   FormEvent,
   FormEventHandler,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import { priorities, states, timeUnits } from '../data/index';
 
 function Form(): JSX.Element {
-  const { addTask } = useContext(Context);
+  const { addTask, taskToEdit } = useContext(Context);
   const [timeUnit, setTimeUnit] = useState<string>(timeUnits[0]);
   const [priority, setPriority] = useState<string>(priorities[0]);
   const [state, setState] = useState<string>(states[0]);
   const [name, setName] = useState<string>('');
   const [time, setTime] = useState<string>('');
+
+  useEffect(() => {
+    if (!taskToEdit) return;
+    setTimeUnit(taskToEdit.timeUnit);
+    setPriority(taskToEdit.priority);
+    setState(taskToEdit.state);
+    setName(taskToEdit.name);
+    setTime(taskToEdit.time);
+  }, [taskToEdit]);
 
   const clearForm = () => {
     setTimeUnit(timeUnits[0]);
@@ -50,6 +60,7 @@ function Form(): JSX.Element {
     <form className="form" onSubmit={submitHandler}>
       <FormBox>
         <FormInput
+          maxLength={20}
           label="Name"
           placeholder="name"
           type="text"
@@ -57,7 +68,7 @@ function Form(): JSX.Element {
           onChange={nameChangeHandler}
         />
         <button type="submit" className="form__btn">
-          Add
+          Save
         </button>
       </FormBox>
 
@@ -67,6 +78,7 @@ function Form(): JSX.Element {
           placeholder="0"
           type="number"
           min={0}
+          max={1000}
           value={time}
           onChange={timeChangeHandler}
         />
