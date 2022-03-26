@@ -28,7 +28,7 @@ export function ContextProvider({
   children,
 }: ContextProviderProps): JSX.Element {
   const [tasks, setTasks] = useState<Task[]>(
-    JSON.parse(localStorage.getItem('tasks') as string)
+    JSON.parse(localStorage.getItem('tasks') as string) || []
   );
   const [taskToEdit, setTaskToEdit] = useState<Task | undefined>(undefined);
   const [taskBeingDragged, setTaskBeingDragged] = useState<Task | undefined>(
