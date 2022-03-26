@@ -1,8 +1,9 @@
-import { colors } from '../data';
+import Option from './Option';
+import OptionSelected from './OptionSelected';
 
 interface FormOptionsProps {
-  label: string;
   options: string[];
+  label: string;
   current: string;
   onClick: (opt: string) => void;
 }
@@ -23,27 +24,14 @@ function FormOptions({
         {options.map((opt, index) => {
           if (opt === current)
             return (
-              <p
-                className="form__option"
-                style={{ backgroundColor: colors[index] }}
-                onClick={() => onClick(opt)}
+              <OptionSelected
+                index={index}
+                opt={opt}
+                onClick={onClick}
                 key={opt}
-              >
-                {opt}
-                <i className="bi bi-check2-circle"></i>
-              </p>
+              />
             );
-
-          return (
-            <p
-              className="form__option"
-              style={{ backgroundColor: colors[index] }}
-              onClick={() => onClick(opt)}
-              key={opt}
-            >
-              {opt}
-            </p>
-          );
+          return <Option index={index} opt={opt} onClick={onClick} key={opt} />;
         })}
       </div>
     </div>

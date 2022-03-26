@@ -9,6 +9,10 @@ interface ContextProviderProps {
 interface ContextProps {
   tasks: Task[];
   taskToEdit: Task | undefined;
+  deleteTask: (task: Task) => void;
+  editTask: (task: Task) => void;
+  beingDraggedHandler: (task: Task) => void;
+  droppedHandler: (col: string) => void;
   addTask: (
     name: string,
     time: string,
@@ -16,10 +20,6 @@ interface ContextProps {
     priority: string,
     state: string
   ) => void;
-  deleteTask: (task: Task) => void;
-  editTask: (task: Task) => void;
-  beingDraggedHandler: (task: Task) => void;
-  droppedHandler: (col: string) => void;
 }
 
 const Context = React.createContext<ContextProps>(undefined!);

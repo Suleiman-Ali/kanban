@@ -11,11 +11,14 @@ $bl: #0f76ca;
 $rd: #e26970;
 $ya: #fcbc04;
 $pur: #6b51f3;
+$pi: #fa5788;
+$pi-2: #f84a7e;
+$pi-3: #e92a64;
 $font-size-15: 1.5rem;
+$font-size-16: 1.6rem;
 $font-size-17-5: 1.75rem;
 $font-size-20: 2rem;
-$box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 24px 0px,
-  rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+$box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 $border-radius: 3px;
 $transition: all 0.1s;
 $letter-spacing: 0.1rem;
@@ -23,6 +26,17 @@ $font-boldness: 450;
 $bp: 750px;
 $bp-2: 500px;
 $bp-3: 1050px;
+
+@mixin font-weight-spacing-upper {
+  font-weight: 450;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+@mixin no-border-outline {
+  border: none;
+  outline: none;
+}
 
 html {
   font-size: 62.5%;
@@ -39,7 +53,7 @@ html {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: $dark-1 #fff;
+  scrollbar-color: $dark-1 $white;
 }
 
 body::-webkit-scrollbar {
@@ -47,13 +61,13 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: #fff;
+  background: $white;
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: $dark-1;
   border-radius: 20px;
-  border: 3px solid #fff;
+  border: 3px solid $white;
 }
 
 .app {
@@ -68,8 +82,8 @@ body::-webkit-scrollbar-thumb {
 .form {
   max-width: 700px;
   width: 100%;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: $white;
+  box-shadow: $box-shadow;
   padding: 3rem;
   border-radius: 5px;
   display: flex;
@@ -95,11 +109,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__label {
-    font-size: 1.5rem;
-    font-weight: 450;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
+    font-size: $font-size-15;
     color: $dark-4;
+    @include font-weight-spacing-upper();
 
     &:not(.start) {
       align-self: center;
@@ -107,18 +119,17 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__input {
-    font-size: 1.75rem;
-    padding: 1rem 1rem;
-    border: none;
-    outline: none;
-    background-color: #f6f8fc;
+    @include no-border-outline();
+    font-size: $font-size-17-5;
     color: $dark-4;
+    border-radius: $border-radius;
+    padding: 1rem 1rem;
+    background-color: #f6f8fc;
     border-bottom: 2px solid #f6f8fc;
-    border-radius: 3px;
     transition: 0.1s all;
 
     &:focus {
-      border-bottom: 2px solid #fa5788;
+      border-bottom: 2px solid $pi;
     }
   }
 
@@ -134,16 +145,14 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__option {
+    font-size: $font-size-15;
+    border-radius: $border-radius;
+    color: $white;
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: 450;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
     padding: 0.75rem 1rem;
-    border-radius: 3px;
-    color: #fff;
     cursor: pointer;
+    @include font-weight-spacing-upper();
 
     @media screen and (max-width: $bp-2) {
       width: 100%;
@@ -152,32 +161,29 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__btn {
-    border: none;
-    outline: none;
-    border-radius: 3px;
+    @include no-border-outline();
+    border-radius: $border-radius;
+    font-size: $font-size-17-5;
+    color: $white;
+    box-shadow: $box-shadow;
     padding: 1rem 5rem;
     width: 100%;
     align-self: flex-end;
-    font-size: 1.75rem;
-    font-weight: 450;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
     flex: 0 1;
-    background-color: #fa5788;
-    color: #fff;
+    background-color: $pi;
     cursor: pointer;
     transition: 0.1s all;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    @include font-weight-spacing-upper();
 
     @media screen and (min-width: $bp) {
       &:hover {
-        background-color: #f84a7e;
+        background-color: $pi-2;
         transform: scale(1.1);
         border-radius: 5px;
       }
 
       &:active {
-        background-color: #e92a64;
+        background-color: $pi-3;
         transform: scale(1.09);
         border-radius: 4px;
       }
@@ -205,8 +211,8 @@ body::-webkit-scrollbar-thumb {
     max-width: 450px;
     width: 100%;
     height: 735px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    border-radius: 3px;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
 
     &::-webkit-scrollbar {
       display: none;
@@ -230,11 +236,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__heading {
-    font-size: 2rem;
-    font-weight: 450;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
+    font-size: $font-size-20;
     color: $dark-4;
+    @include font-weight-spacing-upper();
   }
 
   &__icon {
@@ -244,11 +248,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__count {
-    font-size: 1.5rem;
-    font-weight: 450;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
+    font-size: $font-size-15;
     color: $dark-4;
+    @include font-weight-spacing-upper();
   }
 
   &__colBody {
@@ -259,13 +261,13 @@ body::-webkit-scrollbar-thumb {
 }
 
 .task {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
   padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 2rem;
-  border-radius: 3px;
 
   &__heading {
     display: flex;
@@ -274,9 +276,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__name {
-    font-weight: 450;
-    letter-spacing: 0.1rem;
-    font-size: 1.6rem;
+    @include font-weight-spacing-upper();
+    font-size: $font-size-16;
+    text-transform: none;
     color: $dark-4;
   }
 
@@ -287,10 +289,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   &__icon {
-    cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 450;
+    font-size: $font-size-16;
     color: $dark-4;
+    cursor: pointer;
 
     &:nth-child(1) {
       color: $bl;
@@ -313,12 +314,10 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: 450;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
     padding: 0.75rem 1rem;
-    border-radius: 2px;
-    color: #fff;
+    font-size: $font-size-15;
+    border-radius: $border-radius;
+    color: $white;
+    @include font-weight-spacing-upper();
   }
 }

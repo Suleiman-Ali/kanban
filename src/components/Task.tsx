@@ -1,8 +1,8 @@
-import { useContext } from 'react';
 import Context from '../context';
-import { colors, getPriorityColor, Task } from '../data';
 import TaskHeading from './TaskHeading';
 import TaskProperty from './TaskProperty';
+import { useContext } from 'react';
+import { colors, getPriorityColor, Task } from '../data';
 
 interface TaskProps {
   task: Task;

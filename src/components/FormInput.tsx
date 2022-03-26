@@ -4,11 +4,11 @@ interface FormInputProps {
   label: string;
   type: 'text' | 'number';
   placeholder: string;
+  value: string | number | undefined;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   min?: number;
   max?: number;
   maxLength?: number;
-  value: string | number | undefined;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 function FormInput({
