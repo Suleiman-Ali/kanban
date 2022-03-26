@@ -15,6 +15,6 @@ function App(): JSX.Element {
 
 export default App;
 
-// TODO: RESPONSIVENESS
+// TODO: Drag & Drop
 // TODO: REFACTOR
 // TODO: TEST
