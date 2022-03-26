@@ -1,6 +1,6 @@
-import { ContextProvider } from '../context';
 import Board from './Board';
 import Form from './Form';
+import { ContextProvider } from '../context';
 
 function App(): JSX.Element {
   return (
@@ -14,3 +14,7 @@ function App(): JSX.Element {
 }
 
 export default App;
+
+// TODO: RESPONSIVENESS
+// TODO: REFACTOR
+// TODO: TEST

@@ -1,6 +1,7 @@
 import uniqid from 'uniqid';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { Task } from '../data';
+import { stringify } from 'querystring';
 
 interface ContextProviderProps {
   children: ReactNode;
@@ -25,7 +26,9 @@ const Context = React.createContext<ContextProps>(undefined!);
 export function ContextProvider({
   children,
 }: ContextProviderProps): JSX.Element {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(
+    JSON.parse(localStorage.getItem('tasks') as string)
+  );
   const [taskToEdit, setTaskToEdit] = useState<Task | undefined>(undefined);
 
   const addTask = (
@@ -52,6 +55,10 @@ export function ContextProvider({
       behavior: 'smooth',
     });
   };
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <Context.Provider
