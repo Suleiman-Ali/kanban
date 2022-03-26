@@ -12,9 +12,9 @@ function Board(): JSX.Element {
   return (
     //   prettier-ignore
     <div className="board">
-      <BoardCol label="TO DO"  color={colors[2]} colTasks={todoTasks}/>
+      <BoardCol label="TO DO"  color={colors[2]} colTasks={todoTasks} />
       <BoardCol label="DOING"  color={colors[1]} colTasks={doingTasks}/>
-      <BoardCol label="DONE"  color={colors[4]} colTasks={doneTasks}/>
+      <BoardCol label="DONE"  color={colors[4]} colTasks={doneTasks} />
     </div>
   );
 }

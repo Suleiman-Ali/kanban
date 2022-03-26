@@ -18,6 +18,8 @@ interface ContextProps {
   ) => void;
   deleteTask: (task: Task) => void;
   editTask: (task: Task) => void;
+  beingDraggedHandler: (task: Task) => void;
+  droppedHandler: (col: string) => void;
 }
 
 const Context = React.createContext<ContextProps>(undefined!);
@@ -29,6 +31,9 @@ export function ContextProvider({
     JSON.parse(localStorage.getItem('tasks') as string)
   );
   const [taskToEdit, setTaskToEdit] = useState<Task | undefined>(undefined);
+  const [taskBeingDragged, setTaskBeingDragged] = useState<Task | undefined>(
+    undefined
+  );
 
   const addTask = (
     name: string,
@@ -55,13 +60,36 @@ export function ContextProvider({
     });
   };
 
+  const beingDraggedHandler = (task: Task) => {
+    setTaskBeingDragged(task);
+  };
+
+  const droppedHandler = (col: string) => {
+    if (!taskBeingDragged) return;
+
+    const tasksEdited = tasks.map((task) => {
+      if (task.id === taskBeingDragged.id) return { ...task, state: col };
+      return task;
+    });
+
+    setTasks(tasksEdited);
+  };
+
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
   return (
     <Context.Provider
-      value={{ tasks, addTask, deleteTask, editTask, taskToEdit }}
+      value={{
+        tasks,
+        addTask,
+        deleteTask,
+        editTask,
+        taskToEdit,
+        beingDraggedHandler,
+        droppedHandler,
+      }}
     >
       {children}
     </Context.Provider>
