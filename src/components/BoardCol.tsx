@@ -1,8 +1,8 @@
 import BoardColHeading from './BoardColHeading';
 import BoardColBody from './BoardColBody';
+import Context from '../context';
 import { Task } from '../data';
 import { DragEventHandler, useContext } from 'react';
-import Context from '../context';
 
 interface BoardColProps {
   label: string;

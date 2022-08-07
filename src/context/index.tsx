@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import React, { ReactNode, useEffect, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { Task } from '../data';
 
 interface ContextProviderProps {
@@ -22,7 +22,7 @@ interface ContextProps {
   ) => void;
 }
 
-const Context = React.createContext<ContextProps>(undefined!);
+const Context = createContext<ContextProps>(undefined!);
 
 export function ContextProvider({
   children,
