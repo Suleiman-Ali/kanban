@@ -4,7 +4,7 @@ Kanban is an implementation of Kanban boards which is a visual system used to vi
 
 ![Alt text](./site-image.png)
 
-### Built Using
+### Technologies
 - HTML
 - SASS
 - Typescript 
